@@ -1,3 +1,4 @@
+open System.IO
 open System.Net
 open System.Net.Sockets
 open System.Text
@@ -24,7 +25,7 @@ let main _argv =
         let rec receive(): unit =
             let buf =
                 [| for _ in 1 .. 10 -> byte (0) |]
-            socket.Receive(buf) |> ignore
+            let len = socket.Receive(buf)
             printf "%s" <| Encoding.Default.GetString(buf)
             receive()
         receive()
@@ -34,7 +35,7 @@ let main _argv =
     let rec sendText(): int =
         let inputText = stdin.ReadLine()
         let sendBuf =
-            Encoding.Default.GetBytes(sprintf "%s: %s" (socket.LocalEndPoint.ToString()) inputText)
+            Encoding.Default.GetBytes(sprintf "%s: %s\r\n" (socket.LocalEndPoint.ToString()) inputText)
         let sendResult = socket.Send(sendBuf)
         if sendResult = -1 then
             printfn "送信失敗"

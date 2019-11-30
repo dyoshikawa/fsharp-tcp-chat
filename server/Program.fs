@@ -23,7 +23,7 @@ let main _argv =
         let client = socket.Accept()
         clients.Add(client)
 
-        let newClientMsg = sprintf "入室 %s" <| client.RemoteEndPoint.ToString()
+        let newClientMsg = sprintf "入室 %s\r\n" <| client.RemoteEndPoint.ToString()
         printfn "%s" newClientMsg
         sendBufToClients clients client <| Encoding.Default.GetBytes newClientMsg
 
@@ -34,13 +34,13 @@ let main _argv =
 
                 let len = client.Receive(buffer)
                 if len = 0 then
-                    let exitClientMsg = sprintf "退室 %s\n" <| client.RemoteEndPoint.ToString()
+                    let exitClientMsg = sprintf "退室 %s\r\n" <| client.RemoteEndPoint.ToString()
                     printfn "%s" exitClientMsg
                     sendBufToClients clients client <| Encoding.Default.GetBytes exitClientMsg
                     client.Close()
                     ()
                 else
-                    printfn "%s" <| Encoding.Default.GetString(buffer, 0, len)
+                    printf "%s" <| Encoding.Default.GetString(buffer, 0, len)
                     sendBufToClients clients client buffer
                     read()
             read()
