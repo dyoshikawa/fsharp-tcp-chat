@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# 
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "server", "server\server.fsproj", "{A7A7FBA7-A439-48D5-A090-960785517315}"
+#
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Server", "Server\Server.fsproj", "{A7A7FBA7-A439-48D5-A090-960785517315}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Client", "Client\Client.fsproj", "{9CF9B8ED-DBBA-44F4-B9E6-554F408419CC}"
 EndProject
