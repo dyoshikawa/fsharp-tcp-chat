@@ -34,7 +34,7 @@ let main _argv =
 
                 let len = client.Receive(buffer)
                 if len = 0 then
-                    let exitClientMsg = sprintf "退室 %s" <| client.RemoteEndPoint.ToString()
+                    let exitClientMsg = sprintf "退室 %s\n" <| client.RemoteEndPoint.ToString()
                     printfn "%s" exitClientMsg
                     sendBufToClients clients client <| Encoding.Default.GetBytes exitClientMsg
                     client.Close()
